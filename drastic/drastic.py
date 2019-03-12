@@ -1,12 +1,7 @@
-import stimela
-
 INPUT = "input"
 OUTPUT = "output"
 MSDIR = "msdir"
 PREFIX = "calibration"
-
-recipe = stimela.Recipe("Stimela simulation example", ms_dir=MSDIR)
-
 
 MS_meq = 'meerkat_SourceRecovery_meqtrees.ms'
 MS_cub = 'meerkat_SourceRecovery_cubical.ms'
@@ -41,7 +36,7 @@ CATALOG_TYPE = 'gaul'   # Sourcery output catalog type
 
 def makems(recipe, num, parameters):
     params = {
-        "msname"    :   MS_cub,
+        "msname"    :   MS_meq,
         "telescope" :   TEL_NAME,
         "synthesis" :   SYN_TIME,  # in hours
         "dtime"     :   INT_TIME,  # in seconds
@@ -54,7 +49,7 @@ def makems(recipe, num, parameters):
                params,
                input=INPUT,
                output=OUTPUT,
-               label="Making simulated MS = %s" % PREFIX_cub)
+               label="Making simulated MS = %s" % PREFIX_meq)
     recipe.run()
     recipe.jobs = []
 
@@ -83,6 +78,7 @@ def simulator(recipe, num, parameters):
                label="Add noise and propagation effects to %s" % PREFIX_meq)
     recipe.run()
     recipe.jobs = []
+
 
 # 6: Calibration
 
@@ -239,10 +235,10 @@ def fitstools(recipe, num, parameters):
 # 9: Source Finders
 
 def pybdsm(recipe, num, parameters):
-    cub_image = 'meerkat_SourceRecovery_cubical-cube.image.fits'
+    meq_image = 'meerkat_SourceRecovery_meqtrees-cube.image.fits'
     params = {
-        "filename"              :   '%s:output' % cub_image,
-        "outfile"               :   MS_cub[:-3]+'-cal',
+        "filename"              :   '%s:output' % meq_image,
+        "outfile"               :   MS_meq[:-3]+'-cal',
         "thresh_pix"            :   PIX_THRESH,
         "thresh_isl"            :   ISL_THRESH,
         "group_by_isl"          :   True,
@@ -259,13 +255,13 @@ def pybdsm(recipe, num, parameters):
                params,
                input=INPUT,
                output=OUTPUT,
-               label='src_finder_cal_%s:: Source finder' % cub_image)
+               label='src_finder_cal_%s:: Source finder' % meq_image)
     recipe.run()
     recipe.jobs = []
 
 
 def aegean(recipe, num, parameters):
-    cub_image = 'meerkat_SourceRecovery_cubical-cube.image.fits'
+    meq_image = 'meerkat_SourceRecovery_meqtrees-cube.image.fits'
     params = {
         "filename"            :   '%s:output' % meq_image,
         "outfile"             :   MS_meq[:-3]+'.tab:output',
@@ -278,6 +274,6 @@ def aegean(recipe, num, parameters):
                params,
                input=INPUT,
                output=OUTPUT,
-               label='src_finder_%s:: aegean finder' % cub_image)
+               label='src_finder_%s:: aegean finder' % meq_image)
     recipe.run()
     recipe.jobs = []
