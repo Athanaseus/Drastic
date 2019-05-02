@@ -1,3 +1,5 @@
+import stimela
+
 INPUT = "input"
 OUTPUT = "output"
 MSDIR = "msdir"
@@ -31,10 +33,17 @@ ISL_THRESH = 10.0       # Island detection threshold sigma
 PIX_THRESH = 20.0       # Pixel detection threshold in sigma
 CATALOG_TYPE = 'gaul'   # Sourcery output catalog type
 
+MANUAL = True
+
+if MANUAL:
+    recipe = stimela.Recipe('Make Pipeline', ms_dir=MSDIR)
+else:
+    stimela.register_globals()
+
 
 # 1: Create a telescope measurement set
 
-def makems(recipe, num, parameters):
+def makems(recipe, num, parameters={}):
     params = {
         "msname"    :   MS_meq,
         "telescope" :   TEL_NAME,
@@ -45,7 +54,8 @@ def makems(recipe, num, parameters):
         "nchan"     :   IN_CHAN,
     }
     params.update(parameters)
-    recipe.add("cab/simms", "make_simulated_cub_ms",
+    recipe.add("cab/simms",
+               "{}_simulated_ms".format(num),
                params,
                input=INPUT,
                output=OUTPUT,
@@ -56,7 +66,7 @@ def makems(recipe, num, parameters):
 
 # 2: Simulate visibility data with noise and calibration (propagation) effects
 
-def simulator(recipe, num, parameters):
+def simulator(recipe, num, parameters={}):
     params = {
         "msname"    :   MS_meq,
         "skymodel"  :   LSM,
@@ -71,7 +81,7 @@ def simulator(recipe, num, parameters):
     }
     params.update(parameters)
     recipe.add("cab/simulator",
-               "simulate_meq_noise",
+               "{}_simulate_data".format(num),
                params,
                input=INPUT,
                output=OUTPUT,
@@ -82,7 +92,7 @@ def simulator(recipe, num, parameters):
 
 # 6: Calibration
 
-def meqtrees(recipe, num, parameters):
+def meqtrees(recipe, num, parameters={}):
     params = {
         "skymodel"            : '{0:s}.lsm.html:output'.format(MS_meq[:-3]),
         "model-column"        : "MODEL_DATA",
@@ -108,16 +118,16 @@ def meqtrees(recipe, num, parameters):
         },
     params.update(parameters)
     recipe.add('cab/calibrator',
-               'meq_cal',
+               '{}_calibration'.format(num),
                params,
                input=INPUT,
                output=OUTPUT,
-               label="meq_cal:: Calibrate ms={0:s}".format(MS_meq))
+               label="cal:: Calibrate ms={0:s}".format(MS_meq))
     recipe.run()
     recipe.jobs = []
 
 
-def cubical(recipe, num, parameters):
+def cubical(recipe, num, parameters={}):
     params = {
         "data-ms"             : MS_cub,
         "data-column"         : 'DATA',
@@ -156,7 +166,7 @@ def cubical(recipe, num, parameters):
 
 # 7: Imaging
 
-def wsclean(recipe, num, parameters):
+def wsclean(recipe, num, parameters={}):
     params = {
         "msname"                :   MS_meq,
         "prefix"                :   PREFIX_meq+'-cal',
@@ -177,12 +187,12 @@ def wsclean(recipe, num, parameters):
                params,
                input=INPUT,
                output=OUTPUT,
-               label='image_wsclean_meq_cal:: %s image data' % PREFIX_meq)
+               label='image_wsclean:: %s image data' % PREFIX_meq)
     recipe.run()
     recipe.jobs = []
 
 
-def tclean(recipe, num, parameters):
+def tclean(recipe, num, parameters={}):
     params = {
         "msname"                :   MS_meq,
         "prefix"                :   PREFIX_meq+'-cal',
@@ -202,7 +212,7 @@ def tclean(recipe, num, parameters):
     }
     params.update(parameters)
     recipe.add('cab/casa_tclean',
-               'image_tclean',
+               '{}_image_tclean'.format(),
                params,
                input=INPUT,
                output=OUTPUT,
@@ -213,7 +223,7 @@ def tclean(recipe, num, parameters):
 
 # 8: Stack images to create cubes
 
-def fitstools(recipe, num, parameters):
+def fitstools(recipe, num, parameters={}):
     params = {
      "image"                    : [PREFIX_meq+'-cal-{0:04d}-image.fits:output'.format(d) for d in xrange(OUT_CHAN)],
      "output"                   : PREFIX_meq+'-cal-cube.image.fits',
@@ -223,7 +233,7 @@ def fitstools(recipe, num, parameters):
     }
     params.update(parameters)
     recipe.add('cab/fitstool',
-               'meq_cal_image_cubes',
+               '{}_make_cubes'.format(num),
                params,
                input=INPUT,
                output=OUTPUT,
@@ -234,7 +244,7 @@ def fitstools(recipe, num, parameters):
 
 # 9: Source Finders
 
-def pybdsm(recipe, num, parameters):
+def pybdsm(recipe, num, parameters={}):
     meq_image = 'meerkat_SourceRecovery_meqtrees-cube.image.fits'
     params = {
         "filename"              :   '%s:output' % meq_image,
@@ -251,7 +261,7 @@ def pybdsm(recipe, num, parameters):
     }
     params.update(parameters)
     recipe.add('cab/pybdsm',
-               'source_finder_cub_cal',
+               'source_finder_cub_ca',
                params,
                input=INPUT,
                output=OUTPUT,
@@ -260,7 +270,7 @@ def pybdsm(recipe, num, parameters):
     recipe.jobs = []
 
 
-def aegean(recipe, num, parameters):
+def aegean(recipe, num, parameters={}):
     meq_image = 'meerkat_SourceRecovery_meqtrees-cube.image.fits'
     params = {
         "filename"            :   '%s:output' % meq_image,
@@ -277,3 +287,4 @@ def aegean(recipe, num, parameters):
                label='src_finder_%s:: aegean finder' % meq_image)
     recipe.run()
     recipe.jobs = []
+
