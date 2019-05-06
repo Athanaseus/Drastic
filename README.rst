@@ -9,8 +9,6 @@ Drastic
 
 Diverse Radio Astronomy Software Tools for Imaging and Calibration
 
-Main website: https://aimfast.readthedocs.io
-
 ==============
 Introduction
 ==============
@@ -28,11 +26,11 @@ working directory where source is checked out
   
     $ pip install .
 
-This package is available on *PYPI*, allowing
+This package will soon be available on *PYPI*, allowing
 
 .. code-block:: bash
   
-    $ pip install aimfast
+    $ pip install Drastic
 
 =======
 License
