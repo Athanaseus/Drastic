@@ -1,4 +1,5 @@
 import stimela
+import json
 
 INPUT = "input"
 OUTPUT = "output"
@@ -12,26 +13,73 @@ if MANUAL:
     stimela.register_globals()
 
 
+def json_dump(data_dict, filename='recipes.json', root='output'):
+    """Dumps the computed dictionary into a json file.
+    Parameters
+    ----------
+    data_dict : dict
+        Dictionary with output results to save.
+    filename : file
+        Name of file to dump recipes for later runs
+    root : str
+        Directory to save output json file (default is current directory).
+    Note
+    ----
+    If the `filename` file exists, it will be append, and only
+    repeated recipes will be replaced.
+    """
+    filename = ('{:s}/{:s}'.format(root, filename))
+    try:
+        # Extract data from the json data file
+        with open(filename) as data_file:
+            data_existing = json.load(data_file)
+            data_existing.update(data_dict)
+            data = data_existing
+    except IOError:
+        data = data_dict
+    if data:
+        with open(filename, 'w') as f:
+            json.dump(data, f)
+
+
+def get_data(filename='recipes.json', root='output'):
+    "Extracts data from the json data file"
+    filename = '{:s}/{:s}'.format(root, filename)
+    with open(filename) as f:
+        data = json.load(f)
+    return data
+
+
 # 1: Create a telescope measurement set
 
 def simms(recipe, num, parameters):
+    recipe_params = {}
+    step = "{}_simulated_ms".format(num)
+    cab = '{}_simms'.format(num)
     recipe.add("cab/simms",
-               "{}_simulated_ms".format(num),
+               step,
                parameters,
                input=INPUT,
                output=OUTPUT,
                label="{}_Simulated_MS:: simulate ms".format(num))
+    recipe_params[cab] = parameters
+    json_dump(recipe_params)
 
 
 # 2: Simulate visibility data with noise and calibration (propagation) effects
 
 def simulator(recipe, num, parameters):
+    recipe_params = {}
+    step = "{}_generate_data".format(num)
+    cab = '{}_simms'.format(num)
     recipe.add("cab/simulator",
-               "{}_generate_data".format(num),
+               step,
                parameters,
                input=INPUT,
                output=OUTPUT,
                label="{}_Generate_data:: simulating data".format(num))
+    recipe_params[cab] = parameters
+    json_dump(recipe_params)
 
 
 # 3: Calibration
