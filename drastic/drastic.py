@@ -85,120 +85,180 @@ def simulator(recipe, num, parameters):
 # 3: Calibration
 
 def meqtrees(recipe, num, parameters):
+    recipe_params = {}
+    step = "{}_meq_cal".format(num)
+    cab = '{}_calibrator'.format(num)
     recipe.add('cab/calibrator',
-               '{}_meq_cal'.format(num),
+               step,
                parameters,
                input=INPUT,
                output=OUTPUT,
                label="{}_meq_cal:: Calibrate".format(num))
+    recipe_params[cab] = parameters
+    json_dump(recipe_params)
 
 
 def cubical(recipe, num, parameters):
+    recipe_params = {}
+    step = "{}_cub_cal".format(num)
+    cab = '{}_cubical'.format(num)
     recipe.add('cab/cubical',
-               '{}_cub_cal',
+               step,
                parameters,
                input=INPUT,
                output=OUTPUT,
                shared_memory='32Gb',
                label="{}_cub_cal:: Calibrate".format(num))
+    recipe_params[cab] = parameters
+    json_dump(recipe_params)
 
 
 # 7: Imaging
 
 def wsclean(recipe, num, parameters):
+    recipe_params = {}
+    step = "{}_image_wsclean".format(num)
+    cab = '{}_wsclean'.format(num)
     recipe.add('cab/wsclean',
-               '{}_image_wsclean'.format(num),
+               step,
                parameters,
                input=INPUT,
                output=OUTPUT,
                label='{}_image_wsclean:: image data'.format(num))
+    recipe_params[cab] = parameters
+    json_dump(recipe_params)
 
 
 def casa_tclean(recipe, num, parameters):
+    recipe_params = {}
+    step = "{}_image_tclean".format(num)
+    cab = '{}_casa_tclean'.format(num)
     recipe.add('cab/casa_tclean',
-               '{}_image_tclean'.format(num),
+               step,
                parameters,
                input=INPUT,
                output=OUTPUT,
                label='{}_image_tclean:: image data'.format(num))
+    recipe_params[cab] = parameters
+    json_dump(recipe_params)
 
 
 def casa_cleant(recipe, num, parameters):
+    recipe_params = {}
+    step = "{}_image_clean".format(num)
+    cab = '{}_casa_clean'.format(num)
     recipe.add('cab/casa_clean',
-               '{}_image_clean'.format(),
+               step,
                parameters,
                input=INPUT,
                output=OUTPUT,
                label='{}_image_ddfacet:: image data'.format(num))
+    recipe_params[cab] = parameters
+    json_dump(recipe_params)
 
 
 def ddfacet(recipe, num, parameters):
+    recipe_params = {}
+    step = "{}_image_ddfacet".format(num)
+    cab = '{}_ddfacet'.format(num)
     recipe.add('cab/ddfacet',
-               '{}_image_ddfacet'.format(num),
+               step,
                parameters,
                input=INPUT,
                output=OUTPUT,
                label='image_ddfacet:: image data'.format(num))
+    recipe_params[cab] = parameters
+    json_dump(recipe_params)
 
 
 def lwimager(recipe, num, parameters):
+    recipe_params = {}
+    step = "{}_image_lwimager".format(num)
+    cab = '{}_lwimager'.format(num)
     recipe.add('cab/lwimager',
-               '{}_image_lwimager'.format(num),
+               step,
                parameters,
                input=INPUT,
                output=OUTPUT,
                label='{}_image_lwimager:: image data'.format(num))
+    recipe_params[cab] = parameters
+    json_dump(recipe_params)
 
 
 # 9: Make mask to use during deconvolution
 
 def casa_makemask(recipe, num, parameters):
+    recipe_params = {}
+    step = "{}_MakeMask".format(num)
+    cab = '{}_casa_makemask'.format(num)
     recipe.add('cab/casa_makemask',
                '{}_MakeMask'.format(num),
                parameters,
                input=INPUT,
                output=OUTPUT,
                label='{}_CASA_MakeMask:: make casa mask'.format(num))
+    recipe_params[cab] = parameters
+    json_dump(recipe_params)
 
 
 def cleanmask(recipe, num, parameters):
+    recipe_params = {}
+    step = "{}_CleanMask".format(num)
+    cab = '{}_cleanmask'.format(num)
     recipe.add('cab/cleanmask',
                '{}_CleanMask'.format(num),
                parameters,
                input=INPUT,
                output=OUTPUT,
                label='{}_CleanMask:: make clean mask'.format(num))
+    recipe_params[cab] = parameters
+    json_dump(recipe_params)
 
 
 # 8: Stack images to create cubes
 
 def fitstools(recipe, num, parameters):
+    recipe_params = {}
+    step = "{}_make_cubes".format(num)
+    cab = '{}_fitstool'.format(num)
     recipe.add('cab/fitstool',
-               '{}_make_cubes'.format(num),
+               step,
                parameters,
                input=INPUT,
                output=OUTPUT,
                label='{}_image_cubes:: make image cube'.format(num))
+    recipe_params[cab] = parameters
+    json_dump(recipe_params)
 
 
 # 9: Source Finders
 
 def pybdsm(recipe, num, parameters):
+    recipe_params = {}
+    step = "{}_pybdsm_finder".format(num)
+    cab = '{}_pybdsm'.format(num)
     recipe.add('cab/pybdsm',
-               '{}_pybdsm__finder'.format(num),
+               step,
                parameters,
                input=INPUT,
                output=OUTPUT,
                label='{}_pybdsf_src_finder:: pybdsm finder'.format(num))
+    recipe_params[cab] = parameters
+    json_dump(recipe_params)
 
 
 def aegean(recipe, num, parameters):
+    recipe_params = {}
+    step = "{}_aegean_finder".format(num)
+    cab = '{}_aegean'.format(num)
     recipe.add('cab/aegean',
                '{}_aegean_finder'.format(num),
                parameters,
                input=INPUT,
                output=OUTPUT,
-               label='{}_aegen_src_finders:: aegean finder'.format(num))
+               label='{}_aegean_src_finders:: aegean finder'.format(num))
+    recipe_params[cab] = parameters
+    json_dump(recipe_params)
 
 
 def run_all(recipe):
