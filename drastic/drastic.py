@@ -42,8 +42,12 @@ def json_dump(data_dict, filename='recipes.json', root='output'):
             json.dump(data, f)
 
 
-def get_data(filename='recipes.json', root='output'):
+def get_data(filename='', root='output'):
     "Extracts data from the json data file"
+    if filename:
+        pass
+    else:
+       filename = 'recipes.json'
     filename = '{:s}/{:s}'.format(root, filename)
     with open(filename) as f:
         data = json.load(f)
@@ -52,7 +56,7 @@ def get_data(filename='recipes.json', root='output'):
 
 # 1: Create a telescope measurement set
 
-def simms(recipe, num, parameters):
+def simms(recipe, num, parameters, recipes_file=''):
     recipe_params = {}
     step = "{}_simulated_ms".format(num)
     cab = '{}_simms'.format(num)
@@ -63,12 +67,15 @@ def simms(recipe, num, parameters):
                output=OUTPUT,
                label="{}_Simulated_MS:: simulate ms".format(num))
     recipe_params[cab] = parameters
-    json_dump(recipe_params)
+    if recipes_file:
+         json_dump(recipe_params)
+    else:
+         json_dump(recipe_params, recipes_file)
 
 
 # 2: Simulate visibility data with noise and calibration (propagation) effects
 
-def simulator(recipe, num, parameters):
+def simulator(recipe, num, parameters, recipes_file=''):
     recipe_params = {}
     step = "{}_generate_data".format(num)
     cab = '{}_simms'.format(num)
@@ -79,12 +86,15 @@ def simulator(recipe, num, parameters):
                output=OUTPUT,
                label="{}_Generate_data:: simulating data".format(num))
     recipe_params[cab] = parameters
-    json_dump(recipe_params)
+    if recipes_file:
+         json_dump(recipe_params)
+    else:
+         json_dump(recipe_params, recipes_file)
 
 
 # 3: Calibration
 
-def meqtrees(recipe, num, parameters):
+def meqtrees(recipe, num, parameters, recipes_file=''):
     recipe_params = {}
     step = "{}_meq_cal".format(num)
     cab = '{}_calibrator'.format(num)
@@ -95,7 +105,10 @@ def meqtrees(recipe, num, parameters):
                output=OUTPUT,
                label="{}_meq_cal:: Calibrate".format(num))
     recipe_params[cab] = parameters
-    json_dump(recipe_params)
+    if recipes_file:
+         json_dump(recipe_params)
+    else:
+         json_dump(recipe_params, recipes_file)
 
 
 def cubical(recipe, num, parameters):
@@ -110,12 +123,15 @@ def cubical(recipe, num, parameters):
                shared_memory='32Gb',
                label="{}_cub_cal:: Calibrate".format(num))
     recipe_params[cab] = parameters
-    json_dump(recipe_params)
+    if recipes_file:
+         json_dump(recipe_params)
+    else:
+         json_dump(recipe_params, recipes_file)
 
 
 # 7: Imaging
 
-def wsclean(recipe, num, parameters):
+def wsclean(recipe, num, parameters, recipes_file=''):
     recipe_params = {}
     step = "{}_image_wsclean".format(num)
     cab = '{}_wsclean'.format(num)
@@ -126,10 +142,13 @@ def wsclean(recipe, num, parameters):
                output=OUTPUT,
                label='{}_image_wsclean:: image data'.format(num))
     recipe_params[cab] = parameters
-    json_dump(recipe_params)
+    if recipes_file:
+         json_dump(recipe_params)
+    else:
+         json_dump(recipe_params, recipes_file)
 
 
-def casa_tclean(recipe, num, parameters):
+def casa_tclean(recipe, num, parameters, recipes_file=''):
     recipe_params = {}
     step = "{}_image_tclean".format(num)
     cab = '{}_casa_tclean'.format(num)
@@ -140,10 +159,13 @@ def casa_tclean(recipe, num, parameters):
                output=OUTPUT,
                label='{}_image_tclean:: image data'.format(num))
     recipe_params[cab] = parameters
-    json_dump(recipe_params)
+    if recipes_file:
+         json_dump(recipe_params)
+    else:
+         json_dump(recipe_params, recipes_file)
 
 
-def casa_cleant(recipe, num, parameters):
+def casa_clean(recipe, num, parameters, recipes_file=''):
     recipe_params = {}
     step = "{}_image_clean".format(num)
     cab = '{}_casa_clean'.format(num)
@@ -154,10 +176,13 @@ def casa_cleant(recipe, num, parameters):
                output=OUTPUT,
                label='{}_image_ddfacet:: image data'.format(num))
     recipe_params[cab] = parameters
-    json_dump(recipe_params)
+    if recipes_file:
+         json_dump(recipe_params)
+    else:
+         json_dump(recipe_params, recipes_file)
 
 
-def ddfacet(recipe, num, parameters):
+def ddfacet(recipe, num, parameters, recipes_file=''):
     recipe_params = {}
     step = "{}_image_ddfacet".format(num)
     cab = '{}_ddfacet'.format(num)
@@ -168,10 +193,13 @@ def ddfacet(recipe, num, parameters):
                output=OUTPUT,
                label='image_ddfacet:: image data'.format(num))
     recipe_params[cab] = parameters
-    json_dump(recipe_params)
+    if recipes_file:
+         json_dump(recipe_params)
+    else:
+         json_dump(recipe_params, recipes_file)
 
 
-def lwimager(recipe, num, parameters):
+def lwimager(recipe, num, parameters, recipes_file=''):
     recipe_params = {}
     step = "{}_image_lwimager".format(num)
     cab = '{}_lwimager'.format(num)
@@ -182,12 +210,15 @@ def lwimager(recipe, num, parameters):
                output=OUTPUT,
                label='{}_image_lwimager:: image data'.format(num))
     recipe_params[cab] = parameters
-    json_dump(recipe_params)
+    if recipes_file:
+         json_dump(recipe_params)
+    else:
+         json_dump(recipe_params, recipes_file)
 
 
 # 9: Make mask to use during deconvolution
 
-def casa_makemask(recipe, num, parameters):
+def casa_makemask(recipe, num, parameters, recipes_file=''):
     recipe_params = {}
     step = "{}_MakeMask".format(num)
     cab = '{}_casa_makemask'.format(num)
@@ -198,10 +229,13 @@ def casa_makemask(recipe, num, parameters):
                output=OUTPUT,
                label='{}_CASA_MakeMask:: make casa mask'.format(num))
     recipe_params[cab] = parameters
-    json_dump(recipe_params)
+    if recipes_file:
+         json_dump(recipe_params)
+    else:
+         json_dump(recipe_params, recipes_file)
 
 
-def cleanmask(recipe, num, parameters):
+def cleanmask(recipe, num, parameters, recipes_file=''):
     recipe_params = {}
     step = "{}_CleanMask".format(num)
     cab = '{}_cleanmask'.format(num)
@@ -212,12 +246,15 @@ def cleanmask(recipe, num, parameters):
                output=OUTPUT,
                label='{}_CleanMask:: make clean mask'.format(num))
     recipe_params[cab] = parameters
-    json_dump(recipe_params)
+    if recipes_file:
+         json_dump(recipe_params)
+    else:
+         json_dump(recipe_params, recipes_file)
 
 
 # 8: Stack images to create cubes
 
-def fitstools(recipe, num, parameters):
+def fitstools(recipe, num, parameters, recipes_file=''):
     recipe_params = {}
     step = "{}_make_cubes".format(num)
     cab = '{}_fitstool'.format(num)
@@ -228,12 +265,15 @@ def fitstools(recipe, num, parameters):
                output=OUTPUT,
                label='{}_image_cubes:: make image cube'.format(num))
     recipe_params[cab] = parameters
-    json_dump(recipe_params)
+    if recipes_file:
+         json_dump(recipe_params)
+    else:
+         json_dump(recipe_params, recipes_file)
 
 
 # 9: Source Finders
 
-def pybdsm(recipe, num, parameters):
+def pybdsm(recipe, num, parameters, recipes_file=''):
     recipe_params = {}
     step = "{}_pybdsm_finder".format(num)
     cab = '{}_pybdsm'.format(num)
@@ -244,10 +284,13 @@ def pybdsm(recipe, num, parameters):
                output=OUTPUT,
                label='{}_pybdsf_src_finder:: pybdsm finder'.format(num))
     recipe_params[cab] = parameters
-    json_dump(recipe_params)
+    if recipes_file:
+         json_dump(recipe_params)
+    else:
+         json_dump(recipe_params, recipes_file)
 
 
-def aegean(recipe, num, parameters):
+def aegean(recipe, num, parameters, recipes_file=''):
     recipe_params = {}
     step = "{}_aegean_finder".format(num)
     cab = '{}_aegean'.format(num)
@@ -258,7 +301,10 @@ def aegean(recipe, num, parameters):
                output=OUTPUT,
                label='{}_aegean_src_finders:: aegean finder'.format(num))
     recipe_params[cab] = parameters
-    json_dump(recipe_params)
+    if recipes_file:
+         json_dump(recipe_params)
+    else:
+         json_dump(recipe_params, recipes_file)
 
 
 def run_all(recipe):
