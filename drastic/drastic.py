@@ -53,10 +53,17 @@ def get_data(filename='', root='output'):
         data = json.load(f)
     return data
 
+def get_cab_num(recipes_file='', num=0):
+    if not num:
+        data = get_data(filename)
+        # get number based on current recipes
+    else:
+        num
 
 # 1: Create a telescope measurement set
 
 def simms(recipe, num, parameters, recipes_file=''):
+    num = get_cab_num(num, recipes_file)
     recipe_params = {}
     step = "{}_simulated_ms".format(num)
     cab = '{}_simms'.format(num)
@@ -68,9 +75,9 @@ def simms(recipe, num, parameters, recipes_file=''):
                label="{}_Simulated_MS:: simulate ms".format(num))
     recipe_params[cab] = parameters
     if recipes_file:
-         json_dump(recipe_params)
+        json_dump(recipe_params, recipes_file)
     else:
-         json_dump(recipe_params, recipes_file)
+        json_dump(recipe_params)
 
 
 # 2: Simulate visibility data with noise and calibration (propagation) effects
@@ -87,9 +94,9 @@ def simulator(recipe, num, parameters, recipes_file=''):
                label="{}_Generate_data:: simulating data".format(num))
     recipe_params[cab] = parameters
     if recipes_file:
-         json_dump(recipe_params)
+        json_dump(recipe_params, recipes_file)
     else:
-         json_dump(recipe_params, recipes_file)
+        json_dump(recipe_params)
 
 
 # 3: Calibration
@@ -106,9 +113,9 @@ def meqtrees(recipe, num, parameters, recipes_file=''):
                label="{}_meq_cal:: Calibrate".format(num))
     recipe_params[cab] = parameters
     if recipes_file:
-         json_dump(recipe_params)
+        json_dump(recipe_params, recipes_file)
     else:
-         json_dump(recipe_params, recipes_file)
+        json_dump(recipe_params)
 
 
 def cubical(recipe, num, parameters):
@@ -124,9 +131,9 @@ def cubical(recipe, num, parameters):
                label="{}_cub_cal:: Calibrate".format(num))
     recipe_params[cab] = parameters
     if recipes_file:
-         json_dump(recipe_params)
+        json_dump(recipe_params, recipes_file)
     else:
-         json_dump(recipe_params, recipes_file)
+        json_dump(recipe_params)
 
 
 # 7: Imaging
@@ -143,9 +150,9 @@ def wsclean(recipe, num, parameters, recipes_file=''):
                label='{}_image_wsclean:: image data'.format(num))
     recipe_params[cab] = parameters
     if recipes_file:
-         json_dump(recipe_params)
+        json_dump(recipe_params, recipes_file)
     else:
-         json_dump(recipe_params, recipes_file)
+        json_dump(recipe_params)
 
 
 def casa_tclean(recipe, num, parameters, recipes_file=''):
@@ -160,9 +167,9 @@ def casa_tclean(recipe, num, parameters, recipes_file=''):
                label='{}_image_tclean:: image data'.format(num))
     recipe_params[cab] = parameters
     if recipes_file:
-         json_dump(recipe_params)
+        json_dump(recipe_params, recipes_file)
     else:
-         json_dump(recipe_params, recipes_file)
+        json_dump(recipe_params)
 
 
 def casa_clean(recipe, num, parameters, recipes_file=''):
@@ -177,9 +184,9 @@ def casa_clean(recipe, num, parameters, recipes_file=''):
                label='{}_image_ddfacet:: image data'.format(num))
     recipe_params[cab] = parameters
     if recipes_file:
-         json_dump(recipe_params)
+        json_dump(recipe_params, recipes_file)
     else:
-         json_dump(recipe_params, recipes_file)
+        json_dump(recipe_params)
 
 
 def ddfacet(recipe, num, parameters, recipes_file=''):
@@ -194,9 +201,9 @@ def ddfacet(recipe, num, parameters, recipes_file=''):
                label='image_ddfacet:: image data'.format(num))
     recipe_params[cab] = parameters
     if recipes_file:
-         json_dump(recipe_params)
+        json_dump(recipe_params, recipes_file)
     else:
-         json_dump(recipe_params, recipes_file)
+        json_dump(recipe_params)
 
 
 def lwimager(recipe, num, parameters, recipes_file=''):
@@ -211,9 +218,9 @@ def lwimager(recipe, num, parameters, recipes_file=''):
                label='{}_image_lwimager:: image data'.format(num))
     recipe_params[cab] = parameters
     if recipes_file:
-         json_dump(recipe_params)
+        json_dump(recipe_params, recipes_file)
     else:
-         json_dump(recipe_params, recipes_file)
+        json_dump(recipe_params)
 
 
 # 9: Make mask to use during deconvolution
@@ -230,9 +237,9 @@ def casa_makemask(recipe, num, parameters, recipes_file=''):
                label='{}_CASA_MakeMask:: make casa mask'.format(num))
     recipe_params[cab] = parameters
     if recipes_file:
-         json_dump(recipe_params)
+        json_dump(recipe_params, recipes_file)
     else:
-         json_dump(recipe_params, recipes_file)
+        json_dump(recipe_params)
 
 
 def cleanmask(recipe, num, parameters, recipes_file=''):
@@ -247,9 +254,9 @@ def cleanmask(recipe, num, parameters, recipes_file=''):
                label='{}_CleanMask:: make clean mask'.format(num))
     recipe_params[cab] = parameters
     if recipes_file:
-         json_dump(recipe_params)
+        json_dump(recipe_params, recipes_file)
     else:
-         json_dump(recipe_params, recipes_file)
+        json_dump(recipe_params)
 
 
 # 8: Stack images to create cubes
@@ -266,9 +273,9 @@ def fitstools(recipe, num, parameters, recipes_file=''):
                label='{}_image_cubes:: make image cube'.format(num))
     recipe_params[cab] = parameters
     if recipes_file:
-         json_dump(recipe_params)
+        json_dump(recipe_params, recipes_file)
     else:
-         json_dump(recipe_params, recipes_file)
+        json_dump(recipe_params)
 
 
 # 9: Source Finders
@@ -285,9 +292,9 @@ def pybdsm(recipe, num, parameters, recipes_file=''):
                label='{}_pybdsf_src_finder:: pybdsm finder'.format(num))
     recipe_params[cab] = parameters
     if recipes_file:
-         json_dump(recipe_params)
+        json_dump(recipe_params, recipes_file)
     else:
-         json_dump(recipe_params, recipes_file)
+        json_dump(recipe_params)
 
 
 def aegean(recipe, num, parameters, recipes_file=''):
@@ -302,9 +309,9 @@ def aegean(recipe, num, parameters, recipes_file=''):
                label='{}_aegean_src_finders:: aegean finder'.format(num))
     recipe_params[cab] = parameters
     if recipes_file:
-         json_dump(recipe_params)
+        json_dump(recipe_params, recipes_file)
     else:
-         json_dump(recipe_params, recipes_file)
+        json_dump(recipe_params)
 
 
 def run_all(recipe):
