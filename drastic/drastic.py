@@ -1,5 +1,6 @@
 import stimela
 import json
+import re
 
 INPUT = "input"
 OUTPUT = "output"
@@ -11,6 +12,17 @@ CONFIG = ''
 if MANUAL:
     recipe = stimela.Recipe('Make Pipeline', ms_dir=MSDIR)
     stimela.register_globals()
+
+
+def natural_keys(text):
+    '''
+    alist.sort(key=natural_keys) sorts in human order
+    http://nedbatchelder.com/blog/200712/human_sorting.html
+    (See Toothy's implementation in the comments)
+    '''
+    def atoi(text):
+         return int(text) if text.isdigit() else text
+    return [ atoi(c) for c in re.split(r'(\d+)', text) ]
 
 
 def json_dump(data_dict, filename='recipes.json', root='output'):
@@ -35,20 +47,20 @@ def json_dump(data_dict, filename='recipes.json', root='output'):
         with open(filename) as data_file:
             data_existing = json.load(data_file)
             counter = 0
-            for d in sorted(data_existing):
+            data_keys = data_existing.keys()
+            data_keys.sort(key=natural_keys)
+            for d in data_keys:
                 counter+=1
                 cab_num = int(d.split('_')[0])
-                if num == cab_num:
-                    old_recipe = data_existing.pop(d)
-                    data_existing.update(data_dict)
-                    recipe_name = d.split('_')[-1]
-                    data_existing['{:d}_{:s}'.format(counter+1, recipe_name)] = old_recipe
-                elif num < cab_num:
-                    old_recipe = data_existing.pop(d)
-                    recipe_name = d.split('_')[-1]
-                    data_existing['{:d}_{:s}'.format(counter+1, recipe_name)] = old_recipe
-                else:
-                    data_existing.update(data_dict)
+                cab_name = d.split('_')[-1]
+                if num >= cab_num:
+                    if d in data_dict.keys():
+                        break
+                    else:
+                        old_recipe = data_existing.pop(d)
+                        recipe_name = d.split('_')[-1]
+                        data_existing['{:d}_{:s}'.format(counter+1, recipe_name)] = old_recipe
+            data_existing.update(data_dict)
             data = data_existing
     except IOError:
         data = data_dict
@@ -73,12 +85,15 @@ def get_cab_num(num, recipes_file=''):
     if not num:
         try:
             data = get_data(recipes_file)
-            for d in sorted(data):
+            data_keys = data.keys()
+            data_keys.sort(key=natural_keys)
+            for d in data_keys:
                 cab_num = int(d.split('_')[0])
                 num = cab_num+1
         except IOError:
             num = 1
     return num
+
 
 # 1: Create a telescope measurement set
 
@@ -150,7 +165,7 @@ def cubical(recipe, num, parameters):
                parameters,
                input=INPUT,
                output=OUTPUT,
-               shared_memory='32Gb',
+               shared_memory='150Gb',
                label="{}_cub_cal:: Calibrate".format(num))
     recipe_params[cab] = parameters
     if recipes_file:
@@ -225,6 +240,7 @@ def ddfacet(recipe, num, parameters, recipes_file=''):
                parameters,
                input=INPUT,
                output=OUTPUT,
+               shared_memory="150gb",
                label='image_ddfacet:: image data'.format(num))
     recipe_params[cab] = parameters
     if recipes_file:
