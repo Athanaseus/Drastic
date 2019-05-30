@@ -53,7 +53,7 @@ def json_dump(data_dict, filename='recipes.json', root='output'):
                 counter+=1
                 cab_num = int(d.split('_')[0])
                 cab_name = d.split('_')[-1]
-                if num >= cab_num:
+                if cab_num >= num:
                     if d in data_dict.keys():
                         break
                     else:
