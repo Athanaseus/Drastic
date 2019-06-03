@@ -81,6 +81,18 @@ def get_data(filename='', root='output'):
     return data
 
 
+def remove_cab(cab_id, filename='', root='output'):
+    data = get_data(filename, root)
+    try:
+        data.pop(cab_id)
+        print('{:s} cab was succesfully removed.'.format(cab_id))
+    except KeyError:
+        print('No cab with id: {:s}'.format(cab_id))
+    filename = ('{:s}/{:s}'.format(root, filename))
+    with open(filename, 'w') as data_file:
+        json.dump(data, data_file)
+
+
 def get_cab_num(num, recipes_file=''):
     if not num:
         try:
@@ -307,7 +319,7 @@ def cleanmask(recipe, num, parameters, recipes_file=''):
 
 # 8: Stack images to create cubes
 
-def fitstools(recipe, num, parameters, recipes_file=''):
+def fitstool(recipe, num, parameters, recipes_file=''):
     recipe_params = {}
     num = get_cab_num(num, recipes_file)
     step = "{}_make_cubes".format(num)
