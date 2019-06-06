@@ -58,7 +58,7 @@ standards pep8_.
                      :target: https://pypi.python.org/pypi/aimfast/
                      :alt:
 
-.. |Project License| image:: https://img.shields.io/aur/license/yaourt.svg
+.. |Project License| image:: https://img.shields.io/badge/license-GPL-blue.svg
                      :target: https://github.com/Athanaseus/Drastic/blob/master/LICENSE
                      :alt:
 
