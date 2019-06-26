@@ -314,7 +314,7 @@ def casa_makemask(recipe, num, parameters, recipes_file='', dump=True):
     step = "{}_{}_MakeMask".format(prefix, num)
     cab = '{}_casa_makemask'.format(num)
     recipe.add('cab/casa_makemask',
-               '{}_MakeMask'.format(num),
+               step,
                parameters,
                input=INPUT,
                output=OUTPUT,
@@ -333,7 +333,7 @@ def cleanmask(recipe, num, parameters, recipes_file='', dump=True):
     step = "{}_{}_CleanMask".format(prefix, num)
     cab = '{}_cleanmask'.format(num)
     recipe.add('cab/cleanmask',
-               '{}_CleanMask'.format(num),
+               step,
                parameters,
                input=INPUT,
                output=OUTPUT,
@@ -394,7 +394,7 @@ def aegean(recipe, num, parameters, recipes_file='', dump=True):
     step = "{}_{}_aegean_finder".format(prefix, num)
     cab = '{}_aegean'.format(num)
     recipe.add('cab/aegean',
-               '{}_aegean_finder'.format(num),
+               step,
                parameters,
                input=INPUT,
                output=OUTPUT,
@@ -421,5 +421,4 @@ def run_all(recipe, filename):
         wrapped = wrapper(recipe.run, [job.name])
         t = timeit(wrapped, number=1)
         DATA[job.name] = t
-    print(DATA)
-    save_execution_time(DATA, filename)
+        save_execution_time(DATA, filename)
