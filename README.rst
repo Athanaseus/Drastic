@@ -1,13 +1,15 @@
 =======
 Drastic
 =======
-|Doc Status|
+
 |Pypi Version|
 |Build Version|
 |Python Versions|
 |Project License|
 
 Diverse Radio Astronomy Software Tools for Imaging and Calibration
+
+Main website: https://github.com/Athanaseus/Drastic/wiki
 
 ==============
 Introduction
@@ -45,10 +47,6 @@ Contribute
 Contributions are always welcome! Please ensure that you adhere to our coding
 standards pep8_.
 
-.. |Doc Status| image:: https://readthedocs.org/projects/aimfast/badge/?version=latest
-                :target: http://aimfast.readthedocs.io/en/latest
-                :alt:
-
 .. |Pypi Version| image:: https://img.shields.io/pypi/v/aimfast.svg
                   :target: https://pypi.python.org/pypi/aimfast
                   :alt:
@@ -60,8 +58,8 @@ standards pep8_.
                      :target: https://pypi.python.org/pypi/aimfast/
                      :alt:
 
-.. |Project License| image:: https://img.shields.io/aur/license/yaourt.svg
-                     :target: https://github.com/Athanaseus/aimfast/blob/master/LICENSE
+.. |Project License| image:: https://img.shields.io/badge/license-GPL-blue.svg
+                     :target: https://github.com/Athanaseus/Drastic/blob/master/LICENSE
                      :alt:
 
 .. _source: https://github.com/Athanaseus/Drastic
