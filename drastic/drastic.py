@@ -129,7 +129,7 @@ def get_cab_num(num, recipes_file=''):
 def simms(recipe, num, parameters, recipes_file='', dump=True):
     recipe_params = {}
     num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('.')[0] if recipes_file else 'recipes'
+    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
     step = "{}_{}_simulated_ms".format(prefix, num)
     cab = '{}_simms'.format(num)
     recipe.add("cab/simms",
@@ -150,7 +150,7 @@ def simms(recipe, num, parameters, recipes_file='', dump=True):
 def simulator(recipe, num, parameters, recipes_file='', dump=True):
     recipe_params = {}
     num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('.')[0] if recipes_file else 'recipes'
+    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
     step = "{}_{}_generate_data".format(prefix, num)
     cab = '{}_simulator'.format(num)
     recipe.add("cab/simulator",
@@ -171,7 +171,7 @@ def simulator(recipe, num, parameters, recipes_file='', dump=True):
 def meqtrees(recipe, num, parameters, recipes_file='', dump=True):
     recipe_params = {}
     num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('.')[0] if recipes_file else 'recipes'
+    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
     step = "{}_{}_meq_cal".format(prefix, num)
     cab = '{}_calibrator'.format(num)
     recipe.add('cab/calibrator',
@@ -190,7 +190,7 @@ def meqtrees(recipe, num, parameters, recipes_file='', dump=True):
 def cubical(recipe, num, parameters, recipes_file='', dump=True):
     recipe_params = {}
     num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('.')[0] if recipes_file else 'recipes'
+    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
     step = "{}_{}_cub_cal".format(prefix, num)
     cab = '{}_cubical'.format(num)
     recipe.add('cab/cubical',
@@ -212,7 +212,7 @@ def cubical(recipe, num, parameters, recipes_file='', dump=True):
 def wsclean(recipe, num, parameters, recipes_file='', dump=True):
     recipe_params = {}
     num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('.')[0] if recipes_file else 'recipes'
+    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
     step = "{}_{}_image_wsclean".format(prefix, num)
     cab = '{}_wsclean'.format(num)
     recipe.add('cab/wsclean',
@@ -231,7 +231,7 @@ def wsclean(recipe, num, parameters, recipes_file='', dump=True):
 def casa_tclean(recipe, num, parameters, recipes_file='', dump=True):
     recipe_params = {}
     num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('.')[0] if recipes_file else 'recipes'
+    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
     step = "{}_{}_image_tclean".format(prefix, num)
     cab = '{}_casa_tclean'.format(num)
     recipe.add('cab/casa_tclean',
@@ -250,7 +250,7 @@ def casa_tclean(recipe, num, parameters, recipes_file='', dump=True):
 def casa_clean(recipe, num, parameters, recipes_file='', dump=True):
     recipe_params = {}
     num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('.')[0] if recipes_file else 'recipes'
+    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
     step = "{}_{}_image_clean".format(prefix, num)
     cab = '{}_casa_clean'.format(num)
     recipe.add('cab/casa_clean',
@@ -269,7 +269,7 @@ def casa_clean(recipe, num, parameters, recipes_file='', dump=True):
 def ddfacet(recipe, num, parameters, recipes_file='', dump=True):
     recipe_params = {}
     num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('.')[0] if recipes_file else 'recipes'
+    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
     step = "{}_{}_image_ddfacet".format(prefix, num)
     cab = '{}_ddfacet'.format(num)
     recipe.add('cab/ddfacet',
@@ -289,7 +289,7 @@ def ddfacet(recipe, num, parameters, recipes_file='', dump=True):
 def lwimager(recipe, num, parameters, recipes_file='', dump=True):
     recipe_params = {}
     num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('.')[0] if recipes_file else 'recipes'
+    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
     step = "{}_{}_image_lwimager".format(prefix, num)
     cab = '{}_lwimager'.format(num)
     recipe.add('cab/lwimager',
@@ -310,7 +310,7 @@ def lwimager(recipe, num, parameters, recipes_file='', dump=True):
 def casa_makemask(recipe, num, parameters, recipes_file='', dump=True):
     recipe_params = {}
     num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('.')[0] if recipes_file else 'recipes'
+    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
     step = "{}_{}_MakeMask".format(prefix, num)
     cab = '{}_casa_makemask'.format(num)
     recipe.add('cab/casa_makemask',
@@ -329,7 +329,7 @@ def casa_makemask(recipe, num, parameters, recipes_file='', dump=True):
 def cleanmask(recipe, num, parameters, recipes_file='', dump=True):
     recipe_params = {}
     num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('.')[0] if recipes_file else 'recipes'
+    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
     step = "{}_{}_CleanMask".format(prefix, num)
     cab = '{}_cleanmask'.format(num)
     recipe.add('cab/cleanmask',
@@ -350,7 +350,7 @@ def cleanmask(recipe, num, parameters, recipes_file='', dump=True):
 def fitstool(recipe, num, parameters, recipes_file='', dump=True):
     recipe_params = {}
     num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('.')[0] if recipes_file else 'recipes'
+    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
     step = "{}_{}_make_cubes".format(prefix, num)
     cab = '{}_fitstool'.format(num)
     recipe.add('cab/fitstool',
@@ -371,7 +371,7 @@ def fitstool(recipe, num, parameters, recipes_file='', dump=True):
 def pybdsm(recipe, num, parameters, recipes_file='', dump=True):
     recipe_params = {}
     num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('.')[0] if recipes_file else 'recipes'
+    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
     step = "{}_{}_pybdsm_finder".format(prefix, num)
     cab = '{}_pybdsm'.format(num)
     recipe.add('cab/pybdsm',
@@ -390,7 +390,7 @@ def pybdsm(recipe, num, parameters, recipes_file='', dump=True):
 def aegean(recipe, num, parameters, recipes_file='', dump=True):
     recipe_params = {}
     num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('.')[0] if recipes_file else 'recipes'
+    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
     step = "{}_{}_aegean_finder".format(prefix, num)
     cab = '{}_aegean'.format(num)
     recipe.add('cab/aegean',
@@ -416,6 +416,7 @@ def run_all(recipe, filename):
     DATA = dict()
     from timeit import timeit
     recipe_jobs = recipe.jobs
+    filename = filename.split('/')[-1]
     for job in recipe_jobs:
         start_time = time.time()
         wrapped = wrapper(recipe.run, [job.name])
