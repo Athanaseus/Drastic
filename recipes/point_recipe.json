@@ -799,7 +799,7 @@
     "pblimit": 0,
     "clean_iterations": 50000,
     "smallscalebias": 0.6,
-    "mode": "mfs",
+    "mode": "cube",
     "veltype": "radio",
     "npix": 4096,
     "selectdata": true,
@@ -850,7 +850,7 @@
     "pblimit": 0,
     "clean_iterations": 50000,
     "smallscalebias": 0.6,
-    "mode": "mfs",
+    "mode": "cube",
     "veltype": "radio",
     "npix": 4096,
     "selectdata": true,
@@ -901,7 +901,7 @@
     "pblimit": 0,
     "clean_iterations": 50000,
     "smallscalebias": 0.6,
-    "mode": "mfs",
+    "mode": "cube",
     "veltype": "radio",
     "npix": 4096,
     "selectdata": true,
@@ -952,7 +952,7 @@
     "pblimit": 0,
     "clean_iterations": 50000,
     "smallscalebias": 0.6,
-    "mode": "mfs",
+    "mode": "cube",
     "veltype": "radio",
     "npix": 4096,
     "selectdata": true,
@@ -1003,7 +1003,7 @@
     "pblimit": 0,
     "clean_iterations": 50000,
     "smallscalebias": 0.6,
-    "mode": "mfs",
+    "mode": "cube",
     "veltype": "radio",
     "npix": 4096,
     "selectdata": true,
@@ -1054,7 +1054,7 @@
     "pblimit": 0,
     "clean_iterations": 50000,
     "smallscalebias": 0.6,
-    "mode": "mfs",
+    "mode": "cube",
     "veltype": "radio",
     "npix": 4096,
     "selectdata": true,
@@ -1105,7 +1105,7 @@
     "pblimit": 0,
     "clean_iterations": 50000,
     "smallscalebias": 0.6,
-    "mode": "mfs",
+    "mode": "cube",
     "veltype": "radio",
     "npix": 4096,
     "selectdata": true,
@@ -1156,7 +1156,7 @@
     "pblimit": 0,
     "clean_iterations": 50000,
     "smallscalebias": 0.6,
-    "mode": "mfs",
+    "mode": "cube",
     "veltype": "radio",
     "npix": 4096,
     "selectdata": true,
@@ -1280,7 +1280,7 @@
     "pblimit": 0,
     "clean_iterations": 50000,
     "smallscalebias": 0.6,
-    "mode": "mfs",
+    "mode": "cube",
     "veltype": "radio",
     "npix": 4096,
     "selectdata": true,
@@ -1332,7 +1332,7 @@
     "pblimit": 0,
     "clean_iterations": 50000,
     "smallscalebias": 0.6,
-    "mode": "mfs",
+    "mode": "cube",
     "veltype": "radio",
     "npix": 4096,
     "selectdata": true,
@@ -1384,7 +1384,7 @@
     "pblimit": 0,
     "clean_iterations": 50000,
     "smallscalebias": 0.6,
-    "mode": "mfs",
+    "mode": "cube",
     "veltype": "radio",
     "npix": 4096,
     "selectdata": true,
@@ -1436,7 +1436,7 @@
     "pblimit": 0,
     "clean_iterations": 50000,
     "smallscalebias": 0.6,
-    "mode": "mfs",
+    "mode": "cube",
     "veltype": "radio",
     "npix": 4096,
     "selectdata": true,
@@ -1488,7 +1488,7 @@
     "pblimit": 0,
     "clean_iterations": 50000,
     "smallscalebias": 0.6,
-    "mode": "mfs",
+    "mode": "cube",
     "veltype": "radio",
     "npix": 4096,
     "selectdata": true,
@@ -1540,7 +1540,7 @@
     "pblimit": 0,
     "clean_iterations": 50000,
     "smallscalebias": 0.6,
-    "mode": "mfs",
+    "mode": "cube",
     "veltype": "radio",
     "npix": 4096,
     "selectdata": true,
@@ -1592,7 +1592,7 @@
     "pblimit": 0,
     "clean_iterations": 50000,
     "smallscalebias": 0.6,
-    "mode": "mfs",
+    "mode": "cube",
     "veltype": "radio",
     "npix": 4096,
     "selectdata": true,
@@ -1644,7 +1644,7 @@
     "pblimit": 0,
     "clean_iterations": 50000,
     "smallscalebias": 0.6,
-    "mode": "mfs",
+    "mode": "cube",
     "veltype": "radio",
     "npix": 4096,
     "selectdata": true,
@@ -1820,7 +1820,7 @@
     "cellsize": "1arcsec",
     "chanmode": "channel",
     "clean_iterations": 50000,
-    "mode": "mfs",
+    "mode": "channel",
     "fixed": false
   },
   "38_lwimager": {
@@ -1850,7 +1850,7 @@
     "cellsize": "1arcsec",
     "img_chanstart": 8,
     "clean_iterations": 50000,
-    "mode": "mfs",
+    "mode": "channel",
     "fixed": false
   },
   "39_lwimager": {
@@ -1880,7 +1880,7 @@
     "cellsize": "1arcsec",
     "chanmode": "channel",
     "clean_iterations": 50000,
-    "mode": "mfs",
+    "mode": "channel",
     "fixed": false
   },
   "40_lwimager": {
@@ -1910,7 +1910,7 @@
     "cellsize": "1arcsec",
     "img_chanstart": 24,
     "clean_iterations": 50000,
-    "mode": "mfs",
+    "mode": "channel",
     "fixed": false
   },
   "41_lwimager": {
@@ -1939,7 +1939,7 @@
     "cellsize": "1arcsec",
     "chanmode": "channel",
     "clean_iterations": 50000,
-    "mode": "mfs",
+    "mode": "channel",
     "fixed": false
   },
   "42_lwimager": {
@@ -1969,7 +1969,7 @@
     "cellsize": "1arcsec",
     "img_chanstart": 40,
     "clean_iterations": 50000,
-    "mode": "mfs",
+    "mode": "channel",
     "fixed": false
   },
   "43_lwimager": {
@@ -1999,7 +1999,7 @@
     "cellsize": "1arcsec",
     "chanmode": "channel",
     "clean_iterations": 50000,
-    "mode": "mfs",
+    "mode": "channel",
     "fixed": false
   },
   "44_lwimager": {
@@ -2029,7 +2029,7 @@
     "cellsize": "1arcsec",
     "img_chanstart": 56,
     "clean_iterations": 50000,
-    "mode": "mfs",
+    "mode": "channel",
     "fixed": false
   },
   "45_fitstool": {
@@ -2132,7 +2132,7 @@
     "cellsize": "1arcsec",
     "chanmode": "channel",
     "clean_iterations": 50000,
-    "mode": "mfs",
+    "mode": "cube",
     "fixed": false
   },
   "49_lwimager": {
@@ -2163,7 +2163,7 @@
     "cellsize": "1arcsec",
     "img_chanstart": 8,
     "clean_iterations": 50000,
-    "mode": "mfs",
+    "mode": "cube",
     "fixed": false
   },
   "50_lwimager": {
@@ -2194,7 +2194,7 @@
     "cellsize": "1arcsec",
     "chanmode": "channel",
     "clean_iterations": 50000,
-    "mode": "mfs",
+    "mode": "cube",
     "fixed": false
   },
   "51_lwimager": {
@@ -2225,7 +2225,7 @@
     "cellsize": "1arcsec",
     "img_chanstart": 24,
     "clean_iterations": 50000,
-    "mode": "mfs",
+    "mode": "cube",
     "fixed": false
   },
   "52_lwimager": {
@@ -2256,7 +2256,7 @@
     "cellsize": "1arcsec",
     "chanmode": "channel",
     "clean_iterations": 50000,
-    "mode": "mfs",
+    "mode": "cube",
     "fixed": false
   },
   "53_lwimager": {
@@ -2287,7 +2287,7 @@
     "cellsize": "1arcsec",
     "img_chanstart": 40,
     "clean_iterations": 50000,
-    "mode": "mfs",
+    "mode": "cube",
     "fixed": false
   },
   "54_lwimager": {
@@ -2318,7 +2318,7 @@
     "cellsize": "1arcsec",
     "chanmode": "channel",
     "clean_iterations": 50000,
-    "mode": "mfs",
+    "mode": "cube",
     "fixed": false
   },
   "55_lwimager": {
@@ -2349,7 +2349,7 @@
     "cellsize": "1arcsec",
     "img_chanstart": 56,
     "clean_iterations": 50000,
-    "mode": "mfs",
+    "mode": "cube",
     "fixed": false
   },
   "56_fitstool": {
@@ -2534,7 +2534,7 @@
     "cyclespeedup": -1,
     "clean_iterations": 50000,
     "smallscalebias": 0.6,
-    "mode": "mfs",
+    "mode": "channel",
     "veltype": "radio",
     "selectdata": true,
     "interactive": false,
