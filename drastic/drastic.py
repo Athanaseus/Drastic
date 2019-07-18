@@ -60,22 +60,26 @@ def json_dump(data_dict, filename='recipes.json', root='output'):
     filename = ('{:s}/{:s}'.format(root, filename))
     num = int(data_dict.keys()[0].split('_')[0])
     try:
+        # TODO: This needs some reworking
         # Extract data from the json data file
         with open(filename) as data_file:
             data_existing = json.load(data_file)
+            data_existing_copy = data_existing.copy()
             counter = 0
             data_keys = data_existing.keys()
             data_keys.sort(key=natural_keys)
             for d in data_keys:
                 counter+=1
                 cab_num = int(d.split('_')[0])
-                cab_name = d.split('_')[-1]
+                cab_name = d.split('{}_'.format(cab_num))[-1]
                 if cab_num >= num:
                     if d in data_dict.keys():
                         break
                     else:
-                        old_recipe = data_existing.pop(d)
-                        recipe_name = d.split('_')[-1]
+                        if cab_num == num or cab_name != recipe_name:
+                            data_existing.pop(d)
+                        old_recipe = data_existing_copy.pop(d)
+                        recipe_name = cab_name
                         data_existing['{:d}_{:s}'.format(counter+1, recipe_name)] = old_recipe
             data_existing.update(data_dict)
             data = data_existing
@@ -124,281 +128,19 @@ def get_cab_num(num, recipes_file=''):
     return num
 
 
-# 1: Create a telescope measurement set
-
-def simms(recipe, num, parameters, recipes_file='', dump=True):
+def cab_function(recipe, name, num, parameters, recipes_file='', dump=True):
+    """Generic cab function"""
     recipe_params = {}
     num = get_cab_num(num, recipes_file)
     prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
-    step = "{}_{}_simulated_ms".format(prefix, num)
-    cab = '{}_simms'.format(num)
-    recipe.add("cab/simms",
+    step = "{}_{}_{}".format(prefix, num, name)
+    cab = '{}_{}'.format(num, name)
+    recipe.add("cab/{}".format(name),
                step,
                parameters,
                input=INPUT,
                output=OUTPUT,
-               label="{}:: simulate ms".format(step))
-    recipe_params[cab] = parameters
-    if dump:
-        json_dump(recipe_params, recipes_file)
-    else:
-        pass
-
-
-# 2: Simulate visibility data with noise and calibration (propagation) effects
-
-def simulator(recipe, num, parameters, recipes_file='', dump=True):
-    recipe_params = {}
-    num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
-    step = "{}_{}_generate_data".format(prefix, num)
-    cab = '{}_simulator'.format(num)
-    recipe.add("cab/simulator",
-               step,
-               parameters,
-               input=INPUT,
-               output=OUTPUT,
-               label="{}:: simulating data".format(step))
-    recipe_params[cab] = parameters
-    if dump:
-        json_dump(recipe_params, recipes_file)
-    else:
-        pass
-
-
-# 3: Calibration
-
-def meqtrees(recipe, num, parameters, recipes_file='', dump=True):
-    recipe_params = {}
-    num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
-    step = "{}_{}_meq_cal".format(prefix, num)
-    cab = '{}_calibrator'.format(num)
-    recipe.add('cab/calibrator',
-               step,
-               parameters,
-               input=INPUT,
-               output=OUTPUT,
-               label="{}:: Calibrate".format(step))
-    recipe_params[cab] = parameters
-    if dump:
-        json_dump(recipe_params, recipes_file)
-    else:
-        pass
-
-
-def cubical(recipe, num, parameters, recipes_file='', dump=True):
-    recipe_params = {}
-    num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
-    step = "{}_{}_cub_cal".format(prefix, num)
-    cab = '{}_cubical'.format(num)
-    recipe.add('cab/cubical',
-               step,
-               parameters,
-               input=INPUT,
-               output=OUTPUT,
-               shared_memory='150Gb',
-               label="{}:: Calibrate".format(step))
-    recipe_params[cab] = parameters
-    if dump:
-        json_dump(recipe_params, recipes_file)
-    else:
-        pass
-
-
-# 7: Imaging
-
-def wsclean(recipe, num, parameters, recipes_file='', dump=True):
-    recipe_params = {}
-    num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
-    step = "{}_{}_image_wsclean".format(prefix, num)
-    cab = '{}_wsclean'.format(num)
-    recipe.add('cab/wsclean',
-               step,
-               parameters,
-               input=INPUT,
-               output=OUTPUT,
-               label='{}:: image data'.format(step))
-    recipe_params[cab] = parameters
-    if dump:
-        json_dump(recipe_params, recipes_file)
-    else:
-        pass
-
-
-def casa_tclean(recipe, num, parameters, recipes_file='', dump=True):
-    recipe_params = {}
-    num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
-    step = "{}_{}_image_tclean".format(prefix, num)
-    cab = '{}_casa_tclean'.format(num)
-    recipe.add('cab/casa_tclean',
-               step,
-               parameters,
-               input=INPUT,
-               output=OUTPUT,
-               label='{}:: image data'.format(step))
-    recipe_params[cab] = parameters
-    if dump:
-        json_dump(recipe_params, recipes_file)
-    else:
-        pass
-
-
-def casa_clean(recipe, num, parameters, recipes_file='', dump=True):
-    recipe_params = {}
-    num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
-    step = "{}_{}_image_clean".format(prefix, num)
-    cab = '{}_casa_clean'.format(num)
-    recipe.add('cab/casa_clean',
-               step,
-               parameters,
-               input=INPUT,
-               output=OUTPUT,
-               label='{}:: image data'.format(step))
-    recipe_params[cab] = parameters
-    if dump:
-        json_dump(recipe_params, recipes_file)
-    else:
-        pass
-
-
-def ddfacet(recipe, num, parameters, recipes_file='', dump=True):
-    recipe_params = {}
-    num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
-    step = "{}_{}_image_ddfacet".format(prefix, num)
-    cab = '{}_ddfacet'.format(num)
-    recipe.add('cab/ddfacet',
-               step,
-               parameters,
-               input=INPUT,
-               output=OUTPUT,
-               shared_memory="150gb",
-               label='{}:: image data'.format(step))
-    recipe_params[cab] = parameters
-    if dump:
-        json_dump(recipe_params, recipes_file)
-    else:
-        pass
-
-
-def lwimager(recipe, num, parameters, recipes_file='', dump=True):
-    recipe_params = {}
-    num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
-    step = "{}_{}_image_lwimager".format(prefix, num)
-    cab = '{}_lwimager'.format(num)
-    recipe.add('cab/lwimager',
-               step,
-               parameters,
-               input=INPUT,
-               output=OUTPUT,
-               label='{}:: image data'.format(step))
-    recipe_params[cab] = parameters
-    if dump:
-        json_dump(recipe_params, recipes_file)
-    else:
-        pass
-
-
-# 9: Make mask to use during deconvolution
-
-def casa_makemask(recipe, num, parameters, recipes_file='', dump=True):
-    recipe_params = {}
-    num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
-    step = "{}_{}_MakeMask".format(prefix, num)
-    cab = '{}_casa_makemask'.format(num)
-    recipe.add('cab/casa_makemask',
-               step,
-               parameters,
-               input=INPUT,
-               output=OUTPUT,
-               label='{}:: make casa mask'.format(step))
-    recipe_params[cab] = parameters
-    if dump:
-        json_dump(recipe_params, recipes_file)
-    else:
-        pass
-
-
-def cleanmask(recipe, num, parameters, recipes_file='', dump=True):
-    recipe_params = {}
-    num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
-    step = "{}_{}_CleanMask".format(prefix, num)
-    cab = '{}_cleanmask'.format(num)
-    recipe.add('cab/cleanmask',
-               step,
-               parameters,
-               input=INPUT,
-               output=OUTPUT,
-               label='{}:: make clean mask'.format(step))
-    recipe_params[cab] = parameters
-    if dump:
-        json_dump(recipe_params, recipes_file)
-    else:
-        pass
-
-
-# 8: Stack images to create cubes
-
-def fitstool(recipe, num, parameters, recipes_file='', dump=True):
-    recipe_params = {}
-    num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
-    step = "{}_{}_make_cubes".format(prefix, num)
-    cab = '{}_fitstool'.format(num)
-    recipe.add('cab/fitstool',
-               step,
-               parameters,
-               input=INPUT,
-               output=OUTPUT,
-               label='{}:: make image cube'.format(step))
-    recipe_params[cab] = parameters
-    if dump:
-        json_dump(recipe_params, recipes_file)
-    else:
-        pass
-
-
-# 9: Source Finders
-
-def pybdsm(recipe, num, parameters, recipes_file='', dump=True):
-    recipe_params = {}
-    num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
-    step = "{}_{}_pybdsm_finder".format(prefix, num)
-    cab = '{}_pybdsm'.format(num)
-    recipe.add('cab/pybdsm',
-               step,
-               parameters,
-               input=INPUT,
-               output=OUTPUT,
-               label='{}:: pybdsm finder'.format(step))
-    recipe_params[cab] = parameters
-    if dump:
-        json_dump(recipe_params, recipes_file)
-    else:
-        pass
-
-
-def aegean(recipe, num, parameters, recipes_file='', dump=True):
-    recipe_params = {}
-    num = get_cab_num(num, recipes_file)
-    prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
-    step = "{}_{}_aegean_finder".format(prefix, num)
-    cab = '{}_aegean'.format(num)
-    recipe.add('cab/aegean',
-               step,
-               parameters,
-               input=INPUT,
-               output=OUTPUT,
-               label='{}:: aegean finder'.format(step))
+               label="{}:: {}".format(step, cab))
     recipe_params[cab] = parameters
     if dump:
         json_dump(recipe_params, recipes_file)
