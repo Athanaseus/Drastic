@@ -135,12 +135,21 @@ def cab_function(recipe, name, num, parameters, recipes_file='', dump=True):
     prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
     step = "{}_{}_{}".format(prefix, num, name)
     cab = '{}_{}'.format(num, name)
-    recipe.add("cab/{}".format(name),
-               step,
-               parameters,
-               input=INPUT,
-               output=OUTPUT,
-               label="{}:: {}".format(step, cab))
+    if name in  ['ddfacet']:
+        recipe.add("cab/{}".format(name),
+                   step,
+                   parameters,
+                   input=INPUT,
+                   output=OUTPUT,
+                   shared_memory="150gb",
+                   label="{}:: {}".format(step, cab))
+    else:
+        recipe.add("cab/{}".format(name),
+                   step,
+                   parameters,
+                   input=INPUT,
+                   output=OUTPUT,
+                   label="{}:: {}".format(step, cab))
     recipe_params[cab] = parameters
     if dump:
         json_dump(recipe_params, recipes_file)
