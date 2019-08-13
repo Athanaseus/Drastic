@@ -932,7 +932,7 @@
     "calcres": true,
     "cellsize": "1.0arcsec",
     "pblimit": 0,
-    "clean_iterations": 50000,
+    "clean_iterations": 1000000,
     "smallscalebias": 0.6,
     "mode": "mfs",
     "veltype": "radio",
