@@ -18,7 +18,7 @@ def requirements():
 
 
 setup(name=pkg,
-      version="0.0.0",
+      version="0.1.0",
       description="Diverse Radio Astronomy Software Tools for Imaging and Calibration",
       long_description=readme(),
       author="Athanaseus Ramaila",
