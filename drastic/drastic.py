@@ -38,8 +38,8 @@ def natural_keys(text):
     (See Toothy's implementation in the comments)
     """
     def atoi(text):
-         return int(text) if text.isdigit() else text
-    return [ atoi(c) for c in re.split(r'(\d+)', text) ]
+        return int(text) if text.isdigit() else text
+    return [atoi(c) for c in re.split(r'(\d+)', text)]
 
 
 def json_dump(data_dict, filename='recipes.json', root='output'):
@@ -69,7 +69,7 @@ def json_dump(data_dict, filename='recipes.json', root='output'):
             data_keys = data_existing.keys()
             data_keys.sort(key=natural_keys)
             for d in data_keys:
-                counter+=1
+                counter += 1
                 cab_num = int(d.split('_')[0])
                 cab_name = d.split('{}_'.format(cab_num))[-1]
                 if cab_num >= num:
@@ -135,7 +135,7 @@ def cab_function(recipe, name, num, parameters, recipes_file='', dump=True):
     prefix = recipes_file.split('/')[-1].split('.')[0] if recipes_file else 'recipes'
     step = "{}_{}_{}".format(prefix, num, name)
     cab = '{}_{}'.format(num, name)
-    if name in  ['ddfacet']:
+    if name in ['ddfacet']:
         recipe.add("cab/{}".format(name),
                    step,
                    parameters,
