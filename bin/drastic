@@ -11,6 +11,10 @@ def get_argparser():
     argument = partial(parser.add_argument)
     return parser
 
+def pull():
+    """Use stimela to pull docker images"""
+    pass
+
 def main():
     """Main function."""
     parser = get_argparser()

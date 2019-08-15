@@ -95,7 +95,7 @@ def get_data(filename='', root='output'):
     if filename:
         pass
     else:
-       filename = 'recipes.json'
+        filename = 'recipes.json'
     filename = '{:s}/{:s}'.format(root, filename)
     with open(filename) as f:
         data = json.load(f)
