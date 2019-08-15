@@ -15,7 +15,7 @@ Main website: https://github.com/Athanaseus/Drastic/wiki
 Introduction
 ==============
 
-Radio astronomy reduction tools for the next generation of radio telescope.
+Radio astronomy reduction tools for the next generation radio telescope.
 
 ==============
 Installation
@@ -28,11 +28,11 @@ working directory where source is checked out
   
     $ pip install .
 
-This package is available on *PYPI*, allowing
+This package will soon be available on *PYPI*, allowing
 
 .. code-block:: bash
   
-    $ pip install aimfast
+    $ pip install Drastic
 
 =======
 License
