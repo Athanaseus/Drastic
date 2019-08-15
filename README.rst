@@ -15,7 +15,7 @@ Main website: https://github.com/Athanaseus/Drastic/wiki
 Introduction
 ==============
 
-Radio astronomy reduction tools for the next generation of radio telescope.
+Radio astronomy reduction tools for the next generation radio telescope.
 
 ==============
 Installation
