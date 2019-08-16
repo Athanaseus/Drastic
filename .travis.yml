@@ -1,0 +1,21 @@
+language: python
+sudo: required
+matrix:
+  include:
+  - env: TARGET=pep8
+  - env: TARGET=py2
+  - env: TARGET=py3
+script:
+- true
+install:
+- docker build . -t ${TARGET} -f .travis/${TARGET}.docker
+deploy:
+  provider: pypi
+  user: athanaseus
+  password:
+    secure: ##########
+  true:
+  on:
+    tags: true
+    distributions: sdist bdist_wheel
+repo: athanaseus/Drastic

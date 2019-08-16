@@ -1,0 +1,23 @@
+#!/usr/bin/env python
+
+import argparse
+from functools import partial
+
+
+def get_argparser():
+    """Get argument parser."""
+    parser = argparse.ArgumentParser(
+        description=("Diverse Radio Astronomy Tools for Imaging and Calibration"))
+    argument = partial(parser.add_argument)
+    return parser
+
+def pull():
+    """Use stimela to pull docker images"""
+    pass
+
+def main():
+    """Main function."""
+    parser = get_argparser()
+    args = parser.parse_args()
+
+main()

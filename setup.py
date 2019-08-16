@@ -2,8 +2,9 @@ import os
 from setuptools import setup, find_packages
 
 pkg = 'Drastic'
+__version__ = '0.1.0'
 build_root = os.path.dirname(__file__)
-
+scripts = ["bin/" + j for j in os.listdir("bin") ]
 
 def readme():
     """Get readme content for package long description"""
@@ -18,7 +19,7 @@ def requirements():
 
 
 setup(name=pkg,
-      version="0.1.0",
+      version=__version__,
       description="Diverse Radio Astronomy Software Tools for Imaging and Calibration",
       long_description=readme(),
       author="Athanaseus Ramaila",
@@ -31,4 +32,6 @@ setup(name=pkg,
                    "Topic :: Scientific/Engineering :: Astronomy",
                    "Topic :: Software Development :: Libraries :: Python Modules"],
       platforms=["OS Independent"],
+      scripts=scripts,
+      include_package_data=True,
       install_requires=requirements())
