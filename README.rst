@@ -50,8 +50,8 @@ standards pep8_.
 .. |Pypi Version| image:: https://img.shields.io/pypi/v/aimfast.svg
                   :target: https://pypi.python.org/pypi/aimfast
                   :alt:
-.. |Build Version| image:: https://travis-ci.org/Athanaseus/aimfast.svg?branch=master
-                  :target: https://travis-ci.org/Athanaseus/aimfast
+.. |Build Version| image:: https://travis-ci.org/Athanaseus/Drastic.svg?branch=master
+                  :target: https://travis-ci.org/Athanaseus/Drastic
                   :alt:
 
 .. |Python Versions| image:: https://img.shields.io/pypi/pyversions/aimfast.svg
