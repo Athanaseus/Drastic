@@ -13,9 +13,8 @@ deploy:
   provider: pypi
   user: athanaseus
   password:
-    secure: ##########
+    secure: LkylfTNr5PnwbcSamFjEqW8vcJMjAFvRn7EFERg1Zfg0SnzSvljPgMQ43lAFvVDoE07GR2rYNv2g/2KMacahZ/IUoYViGI7ymiyv252jS6qj1g8UX9dx4lYWn7EAgiVzx6MQvvajF5+4zB67kc3Z6UUwBQnhnBcud4To8zF7kRAl09yZ+X4tbyh5L/NSSM0F8upTkvernp1nEDRNj1623YZf08KyxNTq+g9DpZRTVyWozyANdX00jqZnO9r2QSqw0ih5ngdBqDh2iB/PrvGCGERS4F1nNYBcr+WwjM6c0C/7MTUakZnQXClca2SiNhEgZhiIA133tREE0Ubhi4zRmQtLd/jhyALA2XjfOZYbg16UQWhMiVOYJPm8S0XiRb8eY8atRioNIU4sYCP/Lr6voVKK1h0DuguClEDgn5f43PUHqKN0tQYXEhMIyUYMFHxg6nxiPZJzCY0Ypr/Mei7t4qn0lsWl5f/qrqWeX13dfurkFg2bUF9QaoFApd5aXtMhSzlptBUHwccu6eUUiLa/01If6dNE4E2xm4mdG3jFx5K57RIpHQkV9xAixMWGxHaJ+lVw5RV2qjGtLiX27PT7rEfznL9L/O1ca7zsj/yl7444M7DmDSqAeS/hpFUUUbDOofcvbif+/gpzRM1snMOcfNgk8Cu4exdXqtyYWDn7X+Y=
   true:
-  on:
     tags: true
     distributions: sdist bdist_wheel
 repo: athanaseus/Drastic
