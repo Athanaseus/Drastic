@@ -1,7 +1,7 @@
 import os
 from setuptools import setup, find_packages
 
-pkg = 'Drastic'
+pkg = 'drasticali'
 __version__ = '0.0.6'
 
 build_root = os.path.dirname(__file__)
