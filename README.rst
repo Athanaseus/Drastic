@@ -1,6 +1,6 @@
-=======
-Drastic
-=======
+==========
+drasticali
+==========
 
 |Pypi Version|
 |Build Version|
@@ -32,7 +32,7 @@ This package will soon be available on *PYPI*, allowing
 
 .. code-block:: bash
   
-    $ pip install Drastic
+    $ pip install drasticali
 
 =======
 License
