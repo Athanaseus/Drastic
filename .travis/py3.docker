@@ -10,3 +10,4 @@ RUN docker-apt-install \
 ADD . /code
 WORKDIR /code
 RUN pip3 install .[python-numpy,testing]
+RUN drasticali -h
