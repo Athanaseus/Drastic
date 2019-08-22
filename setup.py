@@ -2,7 +2,7 @@ import os
 from setuptools import setup, find_packages
 
 pkg = 'drasticali'
-__version__ = '0.0.7'
+__version__ = '0.1.0'
 
 build_root = os.path.dirname(__file__)
 scripts = ["bin/" + j for j in os.listdir("bin") ]
@@ -26,7 +26,7 @@ setup(name=pkg,
       author="Athanaseus Ramaila",
       author_email="aramaila@ska.ac.za",
       packages=find_packages(),
-      url="https://github.com/Athanaseus/Drastic",
+      url="https://github.com/Athanaseus/drasticali",
       license="GNU GPL 3",
       classifiers=["Intended Audience :: Developers",
                    "Programming Language :: Python :: 3",

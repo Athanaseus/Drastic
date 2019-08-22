@@ -1,2 +1,3 @@
 aimfast
+ipywidgets
 stimela
