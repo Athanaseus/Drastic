@@ -9,7 +9,7 @@ Drastic
 
 Diverse Radio Astronomy Software Tools for Imaging and Calibration
 
-Main website: https://github.com/Athanaseus/Drastic/wiki
+Main website: https://github.com/Athanaseus/drasticali/wiki
 
 ==============
 Introduction
@@ -28,11 +28,11 @@ working directory where source is checked out
   
     $ pip install .
 
-This package will soon be available on *PYPI*, allowing
+This package is available on *PYPI*, allowing
 
 .. code-block:: bash
   
-    $ pip install Drastic
+    $ pip install drasticali
 
 =======
 License
@@ -47,19 +47,19 @@ Contribute
 Contributions are always welcome! Please ensure that you adhere to our coding
 standards pep8_.
 
-.. |Pypi Version| image:: https://img.shields.io/pypi/v/aimfast.svg
-                  :target: https://pypi.python.org/pypi/aimfast
+.. |Pypi Version| image:: https://img.shields.io/pypi/v/drasticali.svg
+                  :target: https://pypi.python.org/pypi/drasticali
                   :alt:
-.. |Build Version| image:: https://travis-ci.com/Athanaseus/Drastic.svg?branch=master
-                  :target: https://travis-ci.com/Athanaseus/Drastic
+.. |Build Version| image:: https://travis-ci.org/Athanaseus/drasticali.svg?branch=master
+                  :target: https://travis-ci.org/Athanaseus/drasticali
                   :alt:
 
-.. |Python Versions| image:: https://img.shields.io/pypi/pyversions/aimfast.svg
-                     :target: https://pypi.python.org/pypi/aimfast/
+.. |Python Versions| image:: https://img.shields.io/pypi/pyversions/drasticali.svg
+                     :target: https://pypi.python.org/pypi/drasticali/
                      :alt:
 
 .. |Project License| image:: https://img.shields.io/badge/license-GPL-blue.svg
-                     :target: https://github.com/Athanaseus/Drastic/blob/master/LICENSE
+                     :target: https://github.com/Athanaseus/drasticali/blob/master/LICENSE
                      :alt:
 
 .. _source: https://github.com/Athanaseus/Drastic
