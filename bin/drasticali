@@ -10,13 +10,14 @@ def get_argparser():
     """Get argument parser."""
     parser = argparse.ArgumentParser(
         description=("Diverse Radio Astronomy Tools for Imaging and Calibration"))
-    subparsers = parser.add_subparsers(help='commands')
-    list_parser = subparsers.add_parser('run', help='Run notebook server')
-    list_parser.add_argument('--port', action='store', help='Notebook server port')
     argument = partial(parser.add_argument)
     argument("-gn", "--generate_notebooks",
              default=False, action='store_true',
              help='Generate default notebook files (.ipynb format)')
+    subparsers = parser.add_subparsers(help='commands')
+    list_parser = subparsers.add_parser('run', help='Run notebook server')
+    list_parser.add_argument('--port', action='store', help='Notebook server port')
+    list_parser.add_argument('--screen', action='store_true', help='Run Notebook server in a screen session')
     return parser
 
 def generate_notebooks():
@@ -44,13 +45,17 @@ def generate_notebooks():
     print(drasticali_files[3])
     print("## Done ({0:.3f}s)".format(time.time() - time_start_load))
 
-def run_notebook(port):
+def run_notebook(port, screen=False):
     """Run the notebooks"""
     import subprocess
     bashCommand1 = "jupyter-nbextension enable --py widgetsnbextension --sys-prefix"
     bashCommand2 = "jupyter-nbextension install --py jupyter_dashboards --sys-prefix"
     bashCommand3 = "jupyter-nbextension enable --py jupyter_dashboards --sys-prefix"
-    bashCommand4 = "jupyter-notebook --NotebookApp.iopub_data_rate_limit=1000000000 --port={} --no-browser".format(port)
+    if screen:
+        bashCommand4 = "screen -S drasticali-server -dm jupyter-notebook --NotebookApp.iopub_data_rate_limit=1000000000" \
+                       " --port={} --no-browser".format(port)
+    else:
+        bashCommand4 = "jupyter-notebook --NotebookApp.iopub_data_rate_limit=1000000000 --port={} --no-browser".format(port)
     process = subprocess.Popen(bashCommand1.split(), stdout=subprocess.PIPE, shell=True)
     process = subprocess.Popen(bashCommand2.split(), stdout=subprocess.PIPE, shell=True)
     process = subprocess.Popen(bashCommand3.split(), stdout=subprocess.PIPE, shell=True)
@@ -63,9 +68,13 @@ def main():
     if args.generate_notebooks:
         generate_notebooks()
     port = getattr(args, 'port', 0)
-    if port:
-       run_notebook(port)
-    elif port is None:
-       run_notebook('8888')
+    screen = getattr(args, 'screen', 0)
+    if not args.generate_notebooks:
+        if port:
+            run_notebook(port, screen)
+        elif port is None:
+            run_notebook('8888', screen)
 
-main()
+
+if __name__ == "__main__":
+    main()
