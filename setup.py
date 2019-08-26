@@ -2,7 +2,7 @@ import os
 from setuptools import setup, find_packages
 
 pkg = 'drasticali'
-__version__ = '0.0.8'
+__version__ = '0.0.9'
 
 build_root = os.path.dirname(__file__)
 scripts = ["bin/" + j for j in os.listdir("bin") ]
