@@ -47,13 +47,13 @@ def generate_notebooks():
 def run_notebook(port):
     """Run the notebooks"""
     import subprocess
-#    bashCommand1 = "jupyter-nbextension enable --py widgetsnbextension --sys-prefix"
-#    bashCommand2 = "jupyter-nbextension install --py jupyter_dashboards --sys-prefix"
-#    bashCommand3 = "jupyter-nbextension enable --py jupyter_dashboards --sys-prefix"
+    bashCommand1 = "jupyter-nbextension enable --py widgetsnbextension --sys-prefix"
+    bashCommand2 = "jupyter-nbextension install --py jupyter_dashboards --sys-prefix"
+    bashCommand3 = "jupyter-nbextension enable --py jupyter_dashboards --sys-prefix"
     bashCommand4 = "jupyter-notebook --NotebookApp.iopub_data_rate_limit=1000000000 --port={} --no-browser".format(port)
-#    process = subprocess.Popen(bashCommand1.split(), stdout=subprocess.PIPE, shell=True)
-#    process = subprocess.Popen(bashCommand2.split(), stdout=subprocess.PIPE, shell=True)
-#    process = subprocess.Popen(bashCommand3.split(), stdout=subprocess.PIPE, shell=True)
+    process = subprocess.Popen(bashCommand1.split(), stdout=subprocess.PIPE, shell=True)
+    process = subprocess.Popen(bashCommand2.split(), stdout=subprocess.PIPE, shell=True)
+    process = subprocess.Popen(bashCommand3.split(), stdout=subprocess.PIPE, shell=True)
     process = subprocess.Popen(bashCommand4.split(), stdout=subprocess.PIPE, shell=True)
 
 def main():
