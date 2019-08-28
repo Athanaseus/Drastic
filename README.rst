@@ -37,7 +37,7 @@ This package is available on *PYPI*, allowing
 Then pull and/or build stimela images
 
 **uDocker** [Recomended]
-----
+
 .. code-block:: bash
 
     $ stimela pull
