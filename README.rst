@@ -34,6 +34,27 @@ This package is available on *PYPI*, allowing
   
     $ pip install drasticali
 
+Then pull and/or build stimela images
+
+**uDocker** [Recomended]
+----
+.. code-block:: bash
+
+    $ stimela pull
+
+**Singularity** [Recomeded]
+
+.. code-block:: bash
+
+     $ stimela pull --singularity --pull-folder <folder to store stimela singularity images>
+
+**Docker**
+
+.. code-block:: bash
+
+     $ stimela pull
+     $ stimela build
+
 =======
 License
 =======
