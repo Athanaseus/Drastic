@@ -9,7 +9,7 @@ drasticali
 
 Diverse Radio Astronomy Software Tools for Imaging and Calibration
 
-Main website: https://github.com/Athanaseus/drasticali/wiki
+Main website: DRASTICALI_
 
 ==============
 Introduction
@@ -83,6 +83,7 @@ standards pep8_.
                      :target: https://github.com/Athanaseus/drasticali/blob/master/LICENSE
                      :alt:
 
-.. _source: https://github.com/Athanaseus/Drastic
-.. _license: https://github.com/Athanaseus/Drastic/blob/master/LICENSE
+.. _DRASTICALI: https://github.com/Athanaseus/drasticali/wiki
+.. _source: https://github.com/Athanaseus/drasticali
+.. _license: https://github.com/Athanaseus/drasticali/blob/master/LICENSE
 .. _pep8: https://www.python.org/dev/peps/pep-0008
