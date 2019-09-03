@@ -42,6 +42,12 @@ Then pull and/or build stimela images
 
     $ stimela pull
 
+**Podman** [Recomended]
+
+.. code-block:: bash
+
+    $ stimela pull -p
+
 **Singularity** [Recomeded]
 
 .. code-block:: bash
@@ -52,7 +58,7 @@ Then pull and/or build stimela images
 
 .. code-block:: bash
 
-     $ stimela pull
+     $ stimela pull -d
      $ stimela build
 
 =======
