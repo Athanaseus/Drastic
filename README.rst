@@ -36,19 +36,19 @@ This package is available on *PYPI*, allowing
 
 Then pull and/or build stimela images
 
-**uDocker** [Recomended]
+**uDocker** [Recommended]
 
 .. code-block:: bash
 
     $ stimela pull
 
-**Podman** [Recomended]
+**Podman** [Recommended]
 
 .. code-block:: bash
 
     $ stimela pull -p
 
-**Singularity** [Recomeded]
+**Singularity** [Recommeded]
 
 .. code-block:: bash
 
