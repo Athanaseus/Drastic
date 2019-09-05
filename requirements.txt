@@ -1,3 +1,5 @@
 aimfast
 ipywidgets
+matplotlib
 stimela
+tabletext
